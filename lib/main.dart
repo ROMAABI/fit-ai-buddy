@@ -84,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (_) => OnboardingFlow(onComplete: _onOnboardingComplete),
+            builder: (_) => const OnboardingFlow(),
           ),
         );
       }
@@ -125,10 +125,16 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _onOnboardingComplete() async {
+    debugPrint('SplashScreen: _onOnboardingComplete called');
     await _authService.markOnboardingComplete();
+    debugPrint('SplashScreen: onboarding marked complete');
 
-    if (!mounted) return;
+    if (!mounted) {
+      debugPrint('SplashScreen: NOT mounted, skipping navigation');
+      return;
+    }
 
+    debugPrint('SplashScreen: navigating to MainShell');
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (_) => const MainShell()),

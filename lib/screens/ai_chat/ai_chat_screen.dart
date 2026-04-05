@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import '../../core/theme.dart';
 import '../../core/constants.dart';
@@ -32,26 +33,31 @@ class _AiChatScreenState extends State<AiChatScreen> {
   final List<_AttachedFile> _attachedFiles = [];
 
   String get _systemPrompt {
+    final hasAge = _userData.age > 0;
+    final hasWeight = _userData.weight > 0;
+    final hasHeight = _userData.height > 0;
+
+    String missingInfo = '';
+    if (!hasAge) missingInfo += '1. Age\n';
+    if (!hasWeight) missingInfo += '2. Weight (kg)\n';
+    if (!hasHeight) missingInfo += '3. Height (cm)\n';
+    if (missingInfo.isEmpty) missingInfo = 'None — all collected.\n';
+
     return '''You are an expert AI Fitness & Nutrition Coach called "AI Buddy". Your role is to guide users with structured, evidence-based fitness and nutrition advice.
 
-=== USER PROFILE (FROM ONBOARDING) ===
+=== USER PROFILE (ALREADY COLLECTED) ===
 Name: ${_userData.name}
 Sex: ${_userData.sex}
 Primary Goal: ${_userData.objective}
 Fitness Level: ${_userData.fitnessLevel}
 Training Days/Week: ${_userData.trainingDaysPerWeek}
+${hasAge ? 'Age: ${_userData.age}' : ''}
+${hasWeight ? 'Weight: ${_userData.weight} kg' : ''}
+${hasHeight ? 'Height: ${_userData.height} cm' : ''}
 
-=== ONBOARDING (COLLECT MISSING INFO ONLY) ===
-You already have basic info. Collect these additional details if missing:
-1. Age
-2. Weight (kg)
-3. Height (cm)
-4. Activity Level (Sedentary / Moderately Active / Very Active)
-5. Training Environment (Home / Gym)
-6. Dietary Preference (Vegetarian / Non-Vegetarian / Vegan / Allergies)
-7. Medical History (Injuries / Chronic Conditions)
-
-Ask ONE question at a time. Do NOT provide workout/diet plans until all details are collected.
+=== STILL NEEDED (ONLY ASK IF NOT YET PROVIDED) ===
+$missingInfo
+If all info is collected, do NOT ask for it again. Just help the user with fitness/nutrition advice.
 
 === AGENTIC CAPABILITIES ===
 You can help users ADD entries. When user wants to add something, respond with a special action block:
@@ -123,6 +129,36 @@ Always include this when giving fitness advice:
       _model = null;
     }
     _speech.initialize();
+    _loadConversationHistory();
+  }
+
+  Future<void> _loadConversationHistory() async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getString('ai_chat_history');
+    if (saved != null) {
+      try {
+        final List<dynamic> decoded = jsonDecode(saved);
+        _conversationHistory.clear();
+        _conversationHistory
+            .addAll(decoded.map((e) => Map<String, String>.from(e as Map)));
+        final List<_ChatMessage> restored = [];
+        for (final msg in _conversationHistory) {
+          if (msg['role'] == 'system') continue;
+          restored.add(_ChatMessage(
+            role: msg['role']!,
+            sender: msg['role'] == 'assistant' ? 'AI BUDDY' : '',
+            content: msg['content']!,
+            isUser: msg['role'] == 'user',
+          ));
+        }
+        setState(() => _messages.addAll(restored));
+      } catch (_) {}
+    }
+  }
+
+  Future<void> _saveConversationHistory() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('ai_chat_history', jsonEncode(_conversationHistory));
   }
 
   final List<_ChatMessage> _messages = [];
@@ -852,6 +888,8 @@ Always include this when giving fitness advice:
         ));
         _isLoading = false;
       });
+
+      _saveConversationHistory();
 
       if (actionResult['type'] != null && context.mounted) {
         _showActionSnackbar(actionResult['type'], actionResult['data']);

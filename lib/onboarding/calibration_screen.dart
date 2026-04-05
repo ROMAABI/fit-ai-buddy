@@ -48,6 +48,7 @@ class _CalibrationScreenState extends State<CalibrationScreen> {
       });
 
       if (mounted) {
+        debugPrint('CalibrationScreen: calling onGetPlan');
         widget.onGetPlan();
       }
     } catch (e) {

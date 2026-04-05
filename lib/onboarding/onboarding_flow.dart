@@ -6,11 +6,11 @@ import 'step3_objective.dart';
 import 'step4_fitness.dart';
 import 'calibration_screen.dart';
 import 'plan_confirmed_screen.dart';
+import '../shell/main_shell.dart';
+import '../core/auth_service.dart';
 
 class OnboardingFlow extends StatefulWidget {
-  final VoidCallback onComplete;
-
-  const OnboardingFlow({super.key, required this.onComplete});
+  const OnboardingFlow({super.key});
 
   @override
   State<OnboardingFlow> createState() => _OnboardingFlowState();
@@ -20,6 +20,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
   final _controller = PageController();
 
   void _next() {
+    debugPrint('OnboardingFlow: _next called');
     _controller.nextPage(
       duration: const Duration(milliseconds: 350),
       curve: Curves.easeInOut,
@@ -30,6 +31,17 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
     _controller.previousPage(
       duration: const Duration(milliseconds: 350),
       curve: Curves.easeInOut,
+    );
+  }
+
+  void _onComplete() async {
+    debugPrint('OnboardingFlow: onComplete called');
+    await AuthService().markOnboardingComplete();
+    if (!mounted) return;
+    debugPrint('OnboardingFlow: navigating to MainShell');
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const MainShell()),
     );
   }
 
@@ -46,7 +58,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
         Step4FitnessScreen(onNext: _next, onBack: _back),
         CalibrationScreen(onGetPlan: _next, onBack: _back),
         PlanConfirmedScreen(
-          onStartNow: widget.onComplete,
+          onStartNow: _onComplete,
         ),
       ],
     );

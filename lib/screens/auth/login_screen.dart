@@ -153,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => OnboardingFlow(onComplete: _onOnboardingComplete),
+          builder: (_) => const OnboardingFlow(),
         ),
       );
     }
