@@ -505,7 +505,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: TextStyle(color: AppColors.textMuted)),
             ),
             TextButton(
-              onPressed: () {
+              onPressed: () async {
                 setState(() {
                   _userData.name = nameController.text.trim().isNotEmpty
                       ? nameController.text.trim()
@@ -515,6 +515,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   _userData.fitnessLevel = selectedFitnessLevel;
                   _userData.trainingDaysPerWeek = selectedDays;
                 });
+                await _userData.save();
                 Navigator.pop(context);
               },
               child:

@@ -8,6 +8,7 @@ import 'calibration_screen.dart';
 import 'plan_confirmed_screen.dart';
 import '../shell/main_shell.dart';
 import '../core/auth_service.dart';
+import '../core/user_data.dart';
 
 class OnboardingFlow extends StatefulWidget {
   const OnboardingFlow({super.key});
@@ -37,6 +38,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
   void _onComplete() async {
     debugPrint('OnboardingFlow: onComplete called');
     await AuthService().markOnboardingComplete();
+    await UserData().save();
     if (!mounted) return;
     debugPrint('OnboardingFlow: navigating to MainShell');
     Navigator.pushReplacement(

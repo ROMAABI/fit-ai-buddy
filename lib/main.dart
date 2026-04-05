@@ -56,6 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _initializeApp() async {
     await _authService.init();
+    await UserData().load();
 
     if (!mounted) return;
 
