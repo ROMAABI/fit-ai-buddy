@@ -1,0 +1,24 @@
+# Build files
+build/
+*.apk
+*.aab
+*.tar.gz
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+
+# Firebase
+android/app/google-services.json
+
+# OS
+Thumbs.db
+.DS_Store

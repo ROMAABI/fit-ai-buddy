@@ -1,0 +1,42 @@
+name: fit_ai_buddy
+description: FIT AI BUDDY – VRTX System fitness tracking app.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  google_generative_ai: ^0.4.7
+  http: ^1.6.0
+  google_sign_in: ^6.2.1
+  shared_preferences: ^2.3.2
+  firebase_core: ^3.8.0
+  cloud_firestore: ^5.6.0
+  firebase_auth: ^5.4.0
+  speech_to_text: ^7.3.0
+  image_picker: ^1.1.2
+  file_picker: ^8.1.2
+  curved_navigation_bar: ^1.0.6
+  fl_chart: ^0.69.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.14.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/icon_triple.png"
+  adaptive_icon_background: "#0A0E17"
+  adaptive_icon_foreground: "assets/icon/icon_triple.png"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icon/

@@ -1,0 +1,24 @@
+Analyzing fit_ai...                                             
+
+warning • Unused import: 'plan_confirmed_screen.dart' • lib/onboarding/calibration_screen.dart:3:8 • unused_import
+   info • Unnecessary use of multiple underscores • lib/onboarding/calibration_screen.dart:97:30 • unnecessary_underscores
+warning • Unused import: '../shell/main_shell.dart' • lib/onboarding/plan_confirmed_screen.dart:3:8 • unused_import
+   info • Unnecessary use of multiple underscores • lib/onboarding/step2_goal.dart:43:41 • unnecessary_underscores
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/onboarding/step2_goal.dart:53:48 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/onboarding/step3_objective.dart:62:48 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/onboarding/step4_fitness.dart:56:44 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/dashboard/dashboard_screen.dart:181:48 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/dashboard/dashboard_screen.dart:238:48 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/dashboard/dashboard_screen.dart:255:42 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/dashboard/dashboard_screen.dart:295:48 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/dashboard/dashboard_screen.dart:307:48 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/dashboard/dashboard_screen.dart:459:38 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/dashboard/dashboard_screen.dart:522:38 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/dashboard/dashboard_screen.dart:564:37 • deprecated_member_use
+   info • 'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre • lib/screens/expense/add_expense_screen.dart:37:15 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/expense/expense_screen.dart:92:40 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/nutrition/add_nutrition_screen.dart:118:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/nutrition/nutrition_screen.dart:114:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/workout/add_session_screen.dart:103:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/workout/workout_screen.dart:74:39 • deprecated_member_use
+
