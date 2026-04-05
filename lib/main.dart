@@ -59,6 +59,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (!mounted) return;
 
+    // If onboarding is marked complete locally, go straight to dashboard
+    if (_authService.isOnboardingComplete) {
+      _loadUserData();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const MainShell()),
+      );
+      return;
+    }
+
     if (_authService.isLoggedIn) {
       final hasProfile = await _authService.checkUserProfileExists();
 

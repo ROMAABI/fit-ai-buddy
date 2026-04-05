@@ -40,23 +40,24 @@ class AuthService {
       final prefs = await SharedPreferences.getInstance();
       _isOnboardingComplete = prefs.getBool(_keyOnboardingComplete) ?? false;
 
+      // Always restore Firebase auth session
+      _firebaseUser = FirebaseAuth.instance.currentUser;
+      debugPrint('Firebase auth restored: ${_firebaseUser?.email}');
+
+      // Also try Google Sign-In silent restore on mobile
       final savedEmail = prefs.getString(_keyUserEmail);
-      if (savedEmail != null) {
+      if (savedEmail != null && !_isDesktop) {
         try {
-          if (!_isDesktop) {
-            _currentUser = await _googleSignIn.signInSilently();
-            if (_currentUser != null) {
-              await _signInToFirebase(_currentUser!);
-            }
-          } else {
-            _firebaseUser = FirebaseAuth.instance.currentUser;
+          _currentUser = await _googleSignIn.signInSilently();
+          if (_currentUser != null && _firebaseUser == null) {
+            await _signInToFirebase(_currentUser!);
           }
         } catch (_) {
-          _currentUser = null;
-          _firebaseUser = null;
+          debugPrint('Google silent sign-in failed');
         }
       }
-    } catch (_) {
+    } catch (e) {
+      debugPrint('Auth init error: $e');
       _googleSignIn = GoogleSignIn();
     }
 

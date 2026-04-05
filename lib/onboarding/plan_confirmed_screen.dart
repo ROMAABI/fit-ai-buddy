@@ -12,128 +12,98 @@ class PlanConfirmedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: Stack(
-        children: [
-          // Hero image section (top ~55% of screen)
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            height: MediaQuery.of(context).size.height * 0.55,
-            child: Stack(
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0xFF0D1520),
-                        AppColors.background,
-                      ],
-                    ),
-                  ),
-                  child: Center(
-                    child: Icon(
-                      Icons.directions_run,
-                      size: 140,
-                      color: AppColors.white.withValues(alpha: 0.06),
-                    ),
-                  ),
-                ),
-                // Gradient overlay bottom
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  height: 120,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Colors.transparent, AppColors.background],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 14),
+              _buildTopBar(),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+              _buildReadyBadge(),
+              const SizedBox(height: 16),
+              _buildTitle(),
+              const SizedBox(height: 20),
+              _buildDescription(),
+              const SizedBox(height: 48),
+              GestureDetector(
+                onTap: () {
+                  debugPrint('START NOW tapped');
+                  onStartNow();
+                },
+                child: Container(
+                  height: 54,
+                  decoration: BoxDecoration(
+                    color: AppColors.cyan,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.cyan.withValues(alpha: 0.3),
+                        blurRadius: 20,
+                        spreadRadius: 0,
+                        offset: const Offset(0, 4),
                       ),
-                    ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ),
-          // Content
-          SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildTopBar(context),
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.25),
-                        _buildReadyBadge(),
-                        const SizedBox(height: 16),
-                        _buildTitle(),
-                        const SizedBox(height: 20),
-                        _buildDescription(),
-                        const SizedBox(height: 36),
-                        CyberButton(
-                          label: 'START NOW',
-                          onTap: onStartNow,
-                          trailing: const Icon(Icons.bolt,
-                              color: AppColors.background, size: 18),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
+                        'START NOW',
+                        style: TextStyle(
+                          color: AppColors.background,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 2,
                         ),
-                        const SizedBox(height: 24),
-                      ],
-                    ),
+                      ),
+                      SizedBox(width: 8),
+                      Icon(Icons.bolt, color: AppColors.background, size: 18),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 24),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget _buildTopBar(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      child: Row(
-        children: [
-          if (onBack != null)
-            GestureDetector(
-              onTap: onBack,
-              child: Container(
-                width: 36,
-                height: 36,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.white30),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Icon(Icons.arrow_back_ios_new,
-                    color: AppColors.white70, size: 14),
+  Widget _buildTopBar() {
+    return Row(
+      children: [
+        if (onBack != null)
+          GestureDetector(
+            onTap: onBack,
+            child: Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.white30),
+                borderRadius: BorderRadius.circular(8),
               ),
-            )
-          else
-            const SizedBox(width: 36),
-          const SizedBox(width: 12),
-          const Text(
-            'PLAN CONFIRMED',
-            style: TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 11,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 2,
+              child: const Icon(Icons.arrow_back_ios_new,
+                  color: AppColors.white70, size: 14),
             ),
+          )
+        else
+          const SizedBox(width: 36),
+        const SizedBox(width: 12),
+        const Text(
+          'PLAN CONFIRMED',
+          style: TextStyle(
+            color: AppColors.textSecondary,
+            fontSize: 11,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 2,
           ),
-          const Spacer(),
-          const Icon(Icons.more_vert, color: AppColors.textMuted),
-        ],
-      ),
+        ),
+        const Spacer(),
+        const Icon(Icons.more_vert, color: AppColors.textMuted),
+      ],
     );
   }
 
