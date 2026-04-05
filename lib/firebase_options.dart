@@ -20,29 +20,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA0gKXQwNMU_o1l3vNPCfNqNu8i_TzsR7o',
-    appId: '1:196130490803:web:748bb7dff37f24385363c6',
-    messagingSenderId: '196130490803',
-    projectId: 'fit-ai-buddy-30fc0',
-    authDomain: 'fit-ai-buddy-30fc0.firebaseapp.com',
-    storageBucket: 'fit-ai-buddy-30fc0.firebasestorage.app',
-    measurementId: 'G-5D3XV00ZDP',
+    apiKey: 'YOUR_FIREBASE_WEB_API_KEY',
+    appId: 'YOUR_FIREBASE_WEB_APP_ID',
+    messagingSenderId: 'YOUR_FIREBASE_MESSAGING_SENDER_ID',
+    projectId: 'YOUR_FIREBASE_PROJECT_ID',
+    authDomain: 'YOUR_FIREBASE_PROJECT_ID.firebaseapp.com',
+    storageBucket: 'YOUR_FIREBASE_PROJECT_ID.firebasestorage.app',
+    measurementId: 'YOUR_FIREBASE_MEASUREMENT_ID',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA0gKXQwNMU_o1l3vNPCfNqNu8i_TzsR7o',
-    appId: '1:196130490803:android:YOUR_ANDROID_APP_ID',
-    messagingSenderId: '196130490803',
-    projectId: 'fit-ai-buddy-30fc0',
-    storageBucket: 'fit-ai-buddy-30fc0.firebasestorage.app',
+    apiKey: 'YOUR_FIREBASE_ANDROID_API_KEY',
+    appId: 'YOUR_FIREBASE_ANDROID_APP_ID',
+    messagingSenderId: 'YOUR_FIREBASE_MESSAGING_SENDER_ID',
+    projectId: 'YOUR_FIREBASE_PROJECT_ID',
+    storageBucket: 'YOUR_FIREBASE_PROJECT_ID.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA0gKXQwNMU_o1l3vNPCfNqNu8i_TzsR7o',
-    appId: '1:196130490803:ios:YOUR_IOS_APP_ID',
-    messagingSenderId: '196130490803',
-    projectId: 'fit-ai-buddy-30fc0',
-    storageBucket: 'fit-ai-buddy-30fc0.firebasestorage.app',
+    apiKey: 'YOUR_FIREBASE_IOS_API_KEY',
+    appId: 'YOUR_FIREBASE_IOS_APP_ID',
+    messagingSenderId: 'YOUR_FIREBASE_MESSAGING_SENDER_ID',
+    projectId: 'YOUR_FIREBASE_PROJECT_ID',
+    storageBucket: 'YOUR_FIREBASE_PROJECT_ID.firebasestorage.app',
     iosBundleId: 'com.example.fitAiBuddy',
   );
 }
