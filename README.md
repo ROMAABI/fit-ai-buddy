@@ -112,19 +112,22 @@ npx expo start
 
 ---
 
-## 5. 30-Second Launch Demo Presentation
+## 5. Live App Demo Video & Prototype Showcase
 
-A cinematic 30-second presentation video (`brag-output/brag.mp4`) has been rendered showcasing the app's prototype, design system, and capabilities:
+An authentic, live screen recording of the interactive Fit AI Buddy prototype is available in `brag-output/brag.mp4`:
 
 - **Poster Frame**: `brag-output/brag.jpg`
-- **Video File**: `brag-output/brag.mp4` (1920x1080 Full HD, 30fps)
-- **Concept & Storyboard**: `brag-output/brag-plan.md`
+- **Video File**: `brag-output/brag.mp4` (Mobile Viewport 430x932, 30fps screen recording)
+- **Concept & Architecture**: `brag-output/brag-plan.md`
 
-### Core Showcase Moments:
-1. **The Problem & Hook**: Moving beyond outdated 2012-era spreadsheet fitness apps into a refined athletic luxury cockpit.
-2. **High-Precision Biometric Cockpit**: Live caloric burn dial (1,840 kcal), 5-day training streak, and volume telemetry.
-3. **Four Dedicated Power Hubs**: Progressive overload workout logs, sports science AI Coach, and fitness ledger in Rupees (₹).
-4. **Quiet Athletic Luxury**: Bespoke specular sheen rims, liquid glass cards, and system font typography.
+### Core Showcase Moments & App Prototype Capabilities:
+1. **The Athletic Cockpit (Dashboard)**: Live biometric calorie dial (1,840 kcal), 5-day training streak, volume telemetry chart, and fitness expense overview in Indian Rupees (₹).
+2. **Unified Navigation & Top Bar**: Consistent header bar with glass icon buttons and theme switcher across all screens.
+3. **Workout Power Hub**: Filterable routine chips (Push Day, Pull Day, Leg Day), exercise list with completion toggles, and session logging.
+4. **Nutrition & Macro Tracking**: Visual progress bars for Calories, Protein (140g/180g), Carbs, and Fats with timeline meal cards.
+5. **AI Fitness Coach Chatbot**: Responsive AI coaching chat interface with quick suggestion chips ("Analyze recovery", "Weekly summary"), speech bubble styling, and active assistant status.
+6. **Fitness Expense Tracker**: Ledger breakdown with Rupee (`₹`) currency, spending category filters, and monthly budget progression.
+7. **Quiet Athletic Luxury UI**: Bespoke specular sheen rims, liquid glass cards, and full dynamic Light/Dark mode.
 
 ---
 
