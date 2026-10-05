@@ -105,12 +105,20 @@ export default function LoginScreen() {
     setErrorMessage(null);
     setLoading(true);
     try {
-      await authService.signInWithEmailPassword('guest@fitai.app', 'guest123');
-      useUserStore.getState().setOnboardingComplete(false);
-      useUserStore.getState().setUserProfile({ name: 'Guest' });
-      router.replace('/onboarding/step1-sex');
+      useUserStore.getState().setIsLoggedIn(true);
+      useUserStore.getState().setOnboardingComplete(true);
+      useUserStore.getState().setUserProfile({
+        name: 'Alex Rivera',
+        age: 28,
+        weight: 78,
+        height: 182,
+        gender: 'male',
+        fitnessLevel: 'intermediate',
+        primaryGoal: 'hypertrophy',
+      });
+      router.replace('/(tabs)/dashboard');
     } catch (error: any) {
-      setErrorMessage(error?.message || 'Guest sign-in failed.');
+      setErrorMessage(error?.message || 'Guest preview failed.');
     } finally {
       setLoading(false);
     }

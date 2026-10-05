@@ -60,7 +60,8 @@ const makeStyles = (palette: LuxuryPalette, isDark: boolean, bottomInset: number
       shadowOffset: { width: 0, height: 10 },
       shadowOpacity: isDark ? 0.32 : 0.10,
       shadowRadius: 20,
-      elevation: 0,
+      elevation: 10,
+      zIndex: 100,
     },
     specularTopRim: {
       position: 'absolute',

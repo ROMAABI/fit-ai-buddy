@@ -59,7 +59,7 @@ export const CircularProgressRing: React.FC<CircularProgressRingProps> = ({
   return (
     <View style={[styles.container, { width: size, height: size }]}>
       <Svg width={size} height={size}>
-        <G rotation="-90" origin={`${size / 2}, ${size / 2}`}>
+        <G transform={`rotate(-90 ${size / 2} ${size / 2})`}>
           {/* Background Track */}
           <Circle
             cx={size / 2}
